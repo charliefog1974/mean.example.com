@@ -7,7 +7,9 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiUsersRouter = require('./routes/api/users');
+var LocalStrategy = require('passport-local').Strategy;
 
+var Users = require('./models/users');
 
 var app = express();
 
@@ -50,15 +52,15 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(function(user, done){
-  done(null,{
-    id: user._id,
-    username: user.username,
-    email: user.email,
-    first_name: user.first_name,
-    last_name: user.last_name
-  });
-});
+passport.use(Users.createStrategy());
+//   done(null,{
+//     id: user._id,
+//     username: user.username,
+//     email: user.email,
+//     first_name: user.first_name,
+//     last_name: user.last_name
+//   });
+// }); when added above line change
 
 passport.deserializeUser(function(user, done){
   done(null, user);
