@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 var Users = require('../../models/users');
-var passprot = require('passport');
+var passport = require('passport');
 
 router.post('/register', function (req, res, next) {
     var data = req.body;
