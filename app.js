@@ -55,13 +55,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(Users.createStrategy());
-  done(null,{
-    id: user._id,
-    username: user.username,
-    email: user.email,
-    first_name: user.first_name,
-    last_name: user.last_name
-  });
+  // done(null,{
+  //   id: user._id,
+  //   username: user.username,
+  //   email: user.email,
+  //   first_name: user.first_name,
+  //   last_name: user.last_name
+  // });
 // }); when added above line change
 
 passport.deserializeUser(function(user, done){
