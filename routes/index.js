@@ -4,10 +4,11 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   console.log(req.session);
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'ExpressTrain' });
 });
 
-// router.get('/logout', function(req, res){
+// To Be Used Later
+// router.get('/auth/logout', function(req, res){
 //   console.log(req.session);
 //   req.logout();
 //   console.log(req.session);

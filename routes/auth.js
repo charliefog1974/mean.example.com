@@ -6,8 +6,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/logout', function(req, res){
-    req.logout();
-    res.redirect('/auth');
-  });
+  req.logout();
+  res.redirect('/auth');
+});
 
 module.exports = router;
