@@ -3,22 +3,27 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var apiUsersRouter = require('./routes/api/users');
-var LocalStrategy = require('passport-local').Strategy;
-var Users = require('./models/users');
-var apiAuthRouter = require('./routes/api/auth');
-var authRouter = require('./routes/auth');
-
-var app = express();
-
-var config = require('./config.dev');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
+var Users = require('./models/users');
+
+var authRouter = require('./routes/auth');
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var apiAuthRouter = require('./routes/api/auth');
+var apiUsersRouter = require('./routes/api/users');
+
+var app = express();
+
+//Call the config file
+var config = require('./config.dev');
+
+//Connect to MongoDB
+mongoose.connect(config.mongodb, { useNewUrlParser: true });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -49,14 +54,8 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/api/users', apiUsersRouter);
-
 passport.use(Users.createStrategy());
 
-//~line 53
 passport.serializeUser(function(user, done){
   done(null,{
     id: user._id,
@@ -76,13 +75,13 @@ app.use(function(req,res,next){
   next();
 });
 
-//Session-based access control
+//Session based access control
 app.use(function(req,res,next){
   //Uncomment the following line to allow access to everything.
   //return next();
 
   //Allow any endpoint that is an exact match. The server does not
-  //have access to the hash so /auth and /auth#xxx would bot be considered 
+  //have access to the hash so /auth and /auth#xxx would bot be considered
   //exact matches.
   var whitelist = [
     '/',
@@ -98,14 +97,14 @@ app.use(function(req,res,next){
     return next();
   }
 
-  //Allow access to dynamic endpoints
+  //Allow access to dynamic end points
   var subs = [
     '/public/',
     '/api/auth/'
   ];
 
   //The query string provides a partial URL match beginning
-  //at position 0. Both /api/auth/login and /api/auth/logout would would 
+  //at position 0. Both /api/auth/login and /api/auth/logout would would
   //be considered a match for /api/auth/
   for(var sub of subs){
     if(req.url.substring(0, sub.length)===sub){
@@ -119,11 +118,11 @@ app.use(function(req,res,next){
   }
 
   //There is no session nor are there any whitelist matches. Deny access and
-  //Redirect the user to the login screen.
+  //redirect the user to the login screen.
   return res.redirect('/auth#login');
 });
 
-app.use('/api/auth', apiAuthRouter);
+app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/api/auth', apiAuthRouter);
@@ -144,10 +143,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
-module.exports = app;
-
-//Connect to MongoDB
-mongoose.connect(config.mongodb, { useNewUrlParser: true });
 
 module.exports = app;
