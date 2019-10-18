@@ -123,7 +123,7 @@ app.use(function(req,res,next){
   return res.redirect('/auth#login');
 });
 
-app.use('/api/auth', apiAuthRouter);
+app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/api/auth', apiAuthRouter);
