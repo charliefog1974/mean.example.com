@@ -105,7 +105,7 @@ app.use(function(req,res,next){
   var subs = [
     '/public/',
     '/api/auth/',
-    '/api/articles/'
+    '/articles'
   ];
 
   //The query string provides a partial URL match beginning
