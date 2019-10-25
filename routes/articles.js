@@ -3,14 +3,19 @@ var router = express.Router();
 var Articles = require('../models/articles');
 
 router.get('/', function(req, res, next) {
+  articles.find({
+    if(err){
+      return res.json({'success':false, })
+    }
+  })
   res.render('articles/index', { title: 'xxx' });
 });
 
-router.get('/:slug', function(req, res, next) {
+router.get('/view/:slug', function(req, res, next) {
   res.render('articles/view', { title: 'xxx' });
 });
 
-router.get('/cms', function(req, res, next) {
+router.get('/app', function(req, res, next) {
   res.render('articles/app', { title: 'APP' });
 });
 

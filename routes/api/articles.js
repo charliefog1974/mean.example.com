@@ -4,7 +4,7 @@ var articles = require('../../models/articles');
 
 router.get('/', function(req, res, next) {
 
-    articles.find({},function(err, uarticles){
+    articles.find({},function(err, articles){
       if(err){
        return res.json({'success':false, 'error': err});
       }
@@ -53,10 +53,10 @@ router.get('/', function(req, res, next) {
     
         let data = req.body;
     
-        if(data.articlename){
-          article.articlename = data.articlename;
+        if(data.articltitle){
+          article.articletitle = data.articletitle;
         };
-    
+
         article.save(function(err){
           if(err){
             return res.json({success: false, error: err});
