@@ -179,4 +179,3 @@ authApp.load();
 window.addEventListener("hashchange", function(){
   authApp.load();
 });
-

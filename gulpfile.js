@@ -57,17 +57,17 @@ gulp.task('build-users-js', function() {
   return merge(userApp);
 });
 
-// gulp.task('build-articles-js', function() {
+gulp.task('build-articles-js', function() {
 
-//   var articleApp = gulp.src([
-//     'src/js/articles.app.js',
-//   ])
-//   .pipe(concat('articles.app.min.js'))
-//   .pipe(uglify())
-//   .pipe(gulp.dest('public/dist/js'));
+  var articleApp = gulp.src([
+    'src/js/articles.app.js',
+  ])
+  .pipe(concat('articles.app.min.js'))
+  .pipe(uglify())
+  .pipe(gulp.dest('public/dist/js'));
 
-//   return merge(articleApp);
-// });
+  return merge(articleApp);
+});
 
 //Recompile SCSS/JS on save
 gulp.task('watch', function(){
@@ -86,6 +86,6 @@ gulp.task('build-js', gulp.series(
     'build-main-js',
     'build-auth-js',
     'build-users-js',
-    // 'build-articles-js'
+    'build-articles-js'
   ));
   

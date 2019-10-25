@@ -11,7 +11,7 @@ router.get('/:slug', function(req, res, next) {
 });
 
 router.get('/cms', function(req, res, next) {
-  res.render('articles/cms', { title: 'CMS' });
+  res.render('articles/app', { title: 'APP' });
 });
 
 module.exports = router;

@@ -6,7 +6,8 @@ var slug = require('slug');
 var Articles = new Schema({
   title: {
     type: String,
-    required: [true, 'A title is required']
+    required: [true, 'A title is required'],
+    unique: true
   },
   slug: {
     type: String,
