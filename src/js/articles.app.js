@@ -142,15 +142,15 @@ var articlesApp = (function () {
 
       card = `<div class="card">
         <div class="card-header clearfix">
-          <h2 class="h3 float-left">${data.post.title}</h2>
+          <h2 class="h3 float-left">${data.article.title}</h2>
           <div class="float-right">
-            <a href="#edit-${data.post._id}" class="btn btn-primary">Edit</a>
+            <a href="#edit-${data.article._id}" class="btn btn-primary">Edit</a>
           </div>
         </div>
         <div class="card-body">
-          <div class="blockquote">${data.post.body}</div>
+          <div class="blockquote">${data.article.body}</div>
           <br>
-          <div>Tagged: <em>${data.post.keywords}</em></div>
+          <div>Tagged: <em>${data.article.keywords}</em></div>
         </div>
       </div>
 
@@ -176,7 +176,7 @@ var articlesApp = (function () {
     xhr.onload = function () {
       let app = document.getElementById('app');
       let data = JSON.parse(xhr.response);
-      var date = Date(data.post.published);
+      var date = Date(data.article.published);
       console.log(date);
       var form = `
         <div class="card">
@@ -193,7 +193,7 @@ var articlesApp = (function () {
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="title">Title</label>
-                  <input type="text" id="title" name="title" class="form-control" value="${data.post.title}" required>
+                  <input type="text" id="title" name="title" class="form-control" value="${data.article.title}" required>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="published">Published On</label>
@@ -204,26 +204,26 @@ var articlesApp = (function () {
               <div class="row">
                 <div class="form-group col-md">
                   <label for="body">Body</label>
-                  <textarea id="body" name="body" class="form-control" rows="6" required>${data.post.body}</textarea>
+                  <textarea id="body" name="body" class="form-control" rows="6" required>${data.article.body}</textarea>
                 </div>
               </div>
 
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="description">Summary</label>
-                  <input type="text" id="description" name="description" class="form-control" value="${data.post.description}" required>
+                  <input type="text" id="description" name="description" class="form-control" value="${data.article.description}" required>
                 </div>
 
                 <div class="form-group col-md-6">
                   <label for="keywords">Keywords (separated by commas)</label>
-                  <input type="text" id="keywords" name="keywords" class="form-control" value="${data.post.keywords}" required>
+                  <input type="text" id="keywords" name="keywords" class="form-control" value="${data.article.keywords}" required>
                 </div>
               </div>
               <div>
-                <input type="hidden" id="_id" name="_id" class="form-control" value="${data.post._id}" required>
+                <input type="hidden" id="_id" name="_id" class="form-control" value="${data.article._id}" required>
               </div>
               <div>
-                <input type="hidden" id="created" name="created" class="form-control" value="${data.post.created}" required>
+                <input type="hidden" id="created" name="created" class="form-control" value="${data.article.created}" required>
               </div>
 
               <div class="text-right">
@@ -232,7 +232,7 @@ var articlesApp = (function () {
             </form>
           </div>
           <div>
-            <a href="#delete-${data.post._id}" class="text-danger">Delete</a>
+            <a href="#delete-${data.article._id}" class="text-danger">Delete</a>
           </div>
         </div>
 
@@ -300,15 +300,15 @@ var articlesApp = (function () {
             <div class="card-body text-center">
               <div>
                 Are you sure you want to delete
-                <strong>${data.post.title}</strong>
+                <strong>${data.article.title}</strong>
               </div>
 
-              <div>Summary: <strong>${data.post.description}</strong></div>
+              <div>Summary: <strong>${data.article.description}</strong></div>
 
               <div class="text-center">
                 <br>
-                <a onclick="articlesApp.deleteArticle('${data.post._id}');" class="btn btn-lg btn-danger text-white">
-                  Yes delete ${data.post.description}
+                <a onclick="articlesApp.deleteArticle('${data.article._id}');" class="btn btn-lg btn-danger text-white">
+                  Yes delete ${data.article.description}
                 </a>
               </div>
 
