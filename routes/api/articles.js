@@ -63,8 +63,7 @@ router.put('/', function (req, res) {
 
     if (err) {
       return res.json({ success: false, error: err });
-    }
-    else if (article) {
+    } else if (article) {
 
       let data = req.body;
 

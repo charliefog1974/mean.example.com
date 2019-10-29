@@ -17,6 +17,10 @@ var today = new Date();
 
 // });
 
+router.get('/app', function (req, res, next) {
+  res.render('articles/app', { title: 'Article Management' });
+});
+
 router.get('/', function (req, res, next) {
   Articles.find({}, function (err, articles) {
     console.log(articles);
@@ -41,9 +45,5 @@ router.get('/view/:slug', function (req, res, next) {
 
 // res.render('articles/view', { title: 'xxx' });
 // });
-
-router.get('/app', function (req, res, next) {
-  res.render('articles/app', { title: 'Article Management' });
-});
 
 module.exports = router;
