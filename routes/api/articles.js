@@ -31,7 +31,7 @@ router.get('/:id', function (req, res) {
 
 router.get('/byUser/:userID', function (req, res) {
   var userID = req.params.userID;
-  Articles.find({ 'userID': userID }, null, { sort: '-published' }, function (err, articles) {
+  Articles.find({ 'userID': userID }, null, function (err, articles) {
     if (err) {
       return res.json({ 'success': false, 'error': err });
     }
