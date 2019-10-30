@@ -33,7 +33,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/view/:slug', function (req, res, next) {
-  Articles.findeOne({ slug: req.params.slug }, function (err, articles) {
+  Articles.findOne({ slug: req.params.slug }, function (err, articles) {
     if (err) {
       return handleError(err);
     }
