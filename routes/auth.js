@@ -31,7 +31,7 @@ router.post('/register', function(req,res){
       user: user
     });
 
-  });
+  }) });
 
 router.get('/logout', function(req, res){
   // req.logout();
