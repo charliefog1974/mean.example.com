@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   console.log(req.session);
-  res.render('index', { title: 'ExpressTrain' });
+  res.render('index', { title: 'ExpressTrain', name: 'Vinnie' });
 });
 
 // To Be Used Later
